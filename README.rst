@@ -13,9 +13,9 @@ The general idea
 2. Parse build X request into some useful internal structure Y (at the same
    time validate it); if request is invalid, blow up and return typical
    error.
-3. Drop internal structure Y into a per-build zookeeper Z directory and return
-   back a identifier (an encoded version of the directory Z name per-say)
-   that can be sent back in to see the current status of whatever was
+3. Drop internal structure Y into a per-build `zookeeper`_ Z directory and
+   return back a identifier (an encoded version of the directory Z
+   per-say) that can be sent back in to see the current status of whatever was
    requested to build.
 4. Worker (one of many) watching zookeeper takes ownership of build
    directory Z and progresses build through needed steps (updating zookeeper
@@ -30,3 +30,4 @@ The general idea
 
 .. _heat: https://wiki.openstack.org/wiki/Heat
 .. _warm: https://wiki.openstack.org/wiki/Warm
+.. _zookeeper: https://zookeeper.apache.org
