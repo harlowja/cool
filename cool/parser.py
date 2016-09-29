@@ -23,11 +23,34 @@ class BuildParser(object):
         Optional('security_groups'): Schema([six.string_types]),
     }
     network_schema = {
+        Required('name'): All(str, Length(min=1, max=15)),
+        Required('subnets'): Schema([
+            {
+                Required('name'): All(str, Length(min=1, max=15)),
+                Required('cidr'): All(str, Length(min=1)),
+                Optional('ip_version'): int,
+            }
+        ])
     }
     volume_schema = {
+         Required('name'): All(str, Length(min=1, max=15)),
+         Optional('size'): int,
     }
-    security_group_schema = {
-    }
+    security_group_rules_schema = Schema([
+        {
+            Required('protocol'): ['tcp', 'icmp', 'udp'],
+            Required('from_port'): int,
+            Required('to_port'): int,
+            Optional('cidr'): All(str, Length(min=1)),
+        }
+    ])
+    security_group_schema = Schema([
+        {
+            Required('name'): All(str, Length(min=1)),
+            Optional('description'): str,
+            Required('rules'): security_group_rules_schema,
+        }
+    ])
     schema = Schema({
         Optional('server'): server_schema,
         Optional('volume'): volume_schema,
