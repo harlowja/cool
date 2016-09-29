@@ -22,8 +22,8 @@ The general idea
    with status so that user can request status of build X and get back
    useful information); if worker dies, another worker takes over and
    continues, if build is not possible due
-   to runtime issue, fail build and leave note that can be fetched by future
-   user request with details on why.
+   to runtime issue, fail build and leave **note** that can be fetched by
+   future user request with details on why/what failed.
 5. Build X finishes, profit! Now either delete build directory Z in zookeeper
    or leave it and prune it at a later date (via a mechanism akin to
    cache eviction or garage collection).
